@@ -8,9 +8,9 @@ def like(self, media_id, check_media=True):
             if self.blocked_actions_protection:
                 self.logger.warning('blocked_actions_protection ACTIVE. Skipping `like` action.')
                 return False
-        self.delay('like')
         if check_media and not self.check_media(media_id):
             return False
+        self.delay('like')
         _r = self.api.like(media_id)
         if _r == 'feedback_required':
             self.logger.error("`Like` action has been BLOCKED...!!!")
